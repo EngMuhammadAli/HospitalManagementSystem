@@ -1,0 +1,19 @@
+﻿@using WebApplication2.Models;
+@model BloodGroup
+
+<div class="container">
+    <h1 class="text-danger mt-3 text-center">Blood Group</h1>
+
+    <div class="mt-4">
+        <form asp-controller="Admin" asp-action="AddOrUpdateBloodGroup" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-outline mb-3">
+                <input type="text" class="form-control" asp-for="Name" />
+                <label class="form-label" asp-for="Name">Blood Group</label>
+            </div>
+            <span asp-validation-for="Name" class="text-danger"></span>
+            <button type="submit" class="btn btn-block btn-danger">Submit</button>
+        </form>
+    </div>
+
+</div>

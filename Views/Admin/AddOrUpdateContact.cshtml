@@ -1,0 +1,57 @@
+﻿@using WebApplication2.Models;
+@model Contact
+
+<div class="container">
+    <h1 class="text-danger mt-3 text-center">Contact Detail</h1>
+
+    <div class="mt-4">
+        <form asp-controller="Admin" asp-action="AddOrUpdateContact" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-outline mb-3">
+                <input type="text" class="form-control" asp-for="Name" />
+                <label class="form-label" asp-for="Name"></label>
+            </div>
+            <span asp-validation-for="Name" class="text-danger"></span>
+
+            <div class="mb-3">
+                <label class="form-label" asp-for="BranchId">Select Branch</label>
+                <select class="form-select" asp-items="ViewBag.Branches" asp-for="BranchId">
+                </select>
+            </div>
+            <span asp-validation-for="BranchId" class="text-danger"></span>
+
+            <div class="form-outline mb-3">
+                <textarea type="text" class="form-control" asp-for="AddressDetails" rows="3"></textarea>
+                <label class="form-label" asp-for="AddressDetails">Address Details</label>
+            </div>
+            <span asp-validation-for="AddressDetails" class="text-danger"></span>
+
+            <div class="form-outline mb-3">
+                <input type="email" class="form-control" asp-for="HospitalEmail" />
+                <label class="form-label" asp-for="HospitalEmail">Hospital Email</label>
+            </div>
+            <span asp-validation-for="HospitalEmail" class="text-danger"></span>
+
+            <div class="form-outline mb-3">
+                <input type="tel" class="form-control" asp-for="HospitalFaxNumber" />
+                <label class="form-label" asp-for="HospitalFaxNumber">HospitalFaxNumber</label>
+            </div>
+            <span asp-validation-for="HospitalFaxNumber" class="text-danger"></span>
+
+            <div class="form-outline mb-3">
+                <input type="tel" class="form-control" asp-for="HospitalTelephone" />
+                <label class="form-label" asp-for="HospitalTelephone">HospitalTelephone</label>
+            </div>
+            <span asp-validation-for="HospitalTelephone" class="text-danger"></span>
+
+            <div class="form-outline mb-3">
+                <textarea type="text" class="form-control" asp-for="HospitalMapCode" rows="3"></textarea>
+                <label class="form-label" asp-for="HospitalMapCode">Hospital Google Map Code</label>
+            </div>
+            <span asp-validation-for="HospitalMapCode" class="text-danger"></span>
+
+            <button type="submit" class="btn btn-block btn-danger">Submit</button>
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,73 @@
+﻿@using WebApplication2.Models;
+@model List<Appointment>;
+
+@{
+    ViewData["Title"] = "Appointment";
+}
+<h1 class="text-center bg-danger text-white">Patient Appointment Details</h1>
+
+<div class="container">
+    <div class="row">
+        @if (Model is not null)
+        {
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-6 col-md-12 my-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <div>
+                                    <p class="mb-0 pt-2">
+                                        Appointment Date:
+                                        <span class="fw-bold"> @item.CreatedAt.ToString("dd/MM/yyyy")</span>
+                                    </p>
+                                </div>
+                                <div>
+                                    <a class="btn btn-success" asp-action="ChangeAppointmentStatus" asp-controller="Doctor" asp-route-Id="@item.Id" asp-route-appointmentStatusId="4">Approve</a>
+                                    <a class="btn btn-warning" asp-action="ChangeAppointmentStatus" asp-controller="Doctor" asp-route-Id="@item.Id" asp-route-appointmentStatusId="3">Pending</a>
+                                    <a class="btn btn-danger" asp-action="ChangeAppointmentStatus" asp-controller="Doctor" asp-route-Id="@item.Id" asp-route-appointmentStatusId="5">Reject</a>
+                                </div>
+
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p>Patient Name</p> <p>@item.PatientName</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p>Patient Gender</p> <p>@item.PatientGender</p>
+                            </div><div class="d-flex justify-content-between">
+                                <p>Patient Age</p> <p>@item.PatientAge</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p>Patient Blood Group</p> <p>@item.BloodGroup.Name</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p>Patient Email</p> <p>@item.PatientEmail</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p>Patient Phone No</p> <p>@item.PatientPhoneNo</p>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <p>Category</p> <p>@item.DoctorCategory.Name</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p>Doctor</p> <p>@item.Doctor.Name </p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p>Appointment Reason</p> <p>@item.ReasonForAppointment</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p>Appointment Status</p> <p>@item.AppointmentStatus.Name</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        }
+        else
+        {
+            <p>No Record Found</p>
+        }
+    </div>
+</div>

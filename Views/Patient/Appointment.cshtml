@@ -1,0 +1,98 @@
+﻿@using WebApplication2.Models;
+@model Appointment;
+@{
+    ViewData["Title"] = "Appointment";
+}
+<div class="container">
+    <div class="row">
+        <h1 class="text-danger mt-3 text-center">Doctor Appointment</h1>
+
+        <div class="offset-lg-2 col-lg-8">
+
+            @if (!string.IsNullOrEmpty(ViewBag.Success))
+            {
+                <div class="alert alert-dismissible fade show alert-success" role="alert" data-mdb-color="success">
+                    <i class="fas fa-check-circle me-3"></i>
+                    Thank you for choosing our Hospital to meet your healthcare needs.
+                    We have received your appointment request and will get back to you soon.
+                    <button type="button" class="btn-close" data-mdb-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+            {
+                <div class="alert alert-danger" role="alert" data-mdb-color="danger">
+                    <i class="fas fa-check-circle me-3"></i>
+                    @ViewBag.ErrorMessage
+                </div>
+            }
+
+            <form asp-controller="Patient" asp-action="AddOrUpdateAppointment" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-outline mb-3">
+                    <input type="text" class="form-control" asp-for="PatientName" />
+                    <label class="form-label" asp-for="PatientName">Name</label>
+                </div>
+                <span asp-validation-for="PatientName" class="text-danger"></span>
+
+                <div class="form-outline mb-3">
+                    <input type="text" class="form-control" asp-for="PatientEmail" />
+                    <label class="form-label" asp-for="PatientEmail">Email</label>
+                </div>
+                <span asp-validation-for="PatientEmail" class="text-danger"></span>
+
+                <div class="form-outline mb-3">
+                    <input type="number" class="form-control" asp-for="PatientAge" />
+                    <label class="form-label" asp-for="PatientAge">Age</label>
+                </div>
+                <span asp-validation-for="PatientAge" class="text-danger"></span>
+
+                <div class="form-outline mb-3">
+                    <input type="number" class="form-control" asp-for="PatientPhoneNo" />
+                    <label class="form-label" asp-for="PatientPhoneNo">Phone Number</label>
+                </div>
+                <span asp-validation-for="PatientPhoneNo" class="text-danger"></span>
+
+                <div class="mb-3">
+                    <label class="form-label" asp-for="PatientGender">Gender</label>
+                    <select class="form-select" asp-for="PatientGender">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <span asp-validation-for="PatientGender" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" asp-for="BloodGroupId">Blood Group</label>
+                    <select class="form-select" asp-for="BloodGroupId" asp-items="@ViewBag.BloodGroups">
+                    </select>
+                    <span asp-validation-for="BloodGroupId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" asp-for="DoctorCategoryId">Category</label>
+                    <select class="form-select" asp-for="DoctorCategoryId" asp-items="@ViewBag.Categories">
+                    </select>
+                    <span asp-validation-for="DoctorCategoryId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" asp-for="DoctorId">Doctor</label>
+                    <select class="form-select" asp-for="DoctorId" asp-items="@ViewBag.Doctors">
+                    </select>
+                    <span asp-validation-for="DoctorId" class="text-danger"></span>
+                </div>
+
+                <div class="form-outline mb-3">
+                    <textarea class="form-control border" rows="3" asp-for="ReasonForAppointment"></textarea>
+                    <label class="form-label" asp-for="ReasonForAppointment">Reason for Appointment</label>
+                    <span asp-validation-for="ReasonForAppointment" class="text-danger"></span>
+                </div>
+
+               
+                <button type="submit" class="btn btn-block btn-danger">Submit</button>
+            </form>
+        </div>
+
+    </div>
+</div>

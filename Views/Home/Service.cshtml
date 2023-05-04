@@ -1,0 +1,39 @@
+﻿@using WebApplication2.Models;
+@model List<Service>;
+
+@{
+    ViewData["Title"] = "Service";
+}
+
+<div>
+    <img src="/assets/img/638105196738423292.jpg" class="img-responisve img-fluid w-100" />
+    <h1 class="text-danger mt-3 text-center mt-3">Services </h1>
+
+    <div class="border border-bottom-3">
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="border border-bottom-3">
+    </div>
+
+    <div class="container ">
+
+        <div class="row row-cols-1 row-cols-md-2 g-4 bg-light">
+            @foreach (var service in Model)
+            {
+                <div class="col">
+                    <div class="card">
+                        <img src="/assets/img/@service.ImageUrl" class="card-img-top" height="400" alt="Hollywood Sign on The Hill" />
+                        <div class="card-body">
+                            <h5 class="card-title">@service.Name</h5>
+                            <p class="card-text">
+                                @service.Description
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

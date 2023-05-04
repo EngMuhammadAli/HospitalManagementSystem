@@ -1,0 +1,38 @@
+﻿@using WebApplication2.Models;
+@model List<Contact>
+@{
+    ViewData["Title"] = "Contact";
+}
+
+<div>
+    <img src="/assets/img/638105196671449665.jpg" class="img-responisve img-fluid w-100" />
+    <h1 class="text-danger mt-3 text-center mt-3">Contact Us </h1>
+
+    <div class="border border-bottom-3">
+    </div>
+</div>
+<div class="container">
+
+    @foreach (var contact in Model)
+    {
+        <div class="mt-3">
+            <h3 class="text-dark">@contact.Name @contact.Branch.City.Name</h3>
+            <p>@contact.Name</p>
+            <p>Address: @contact.AddressDetails</p>
+            <p>Tel: +@contact.HospitalTelephone</p>
+            <p>Fax: +@contact.HospitalFaxNumber</p>
+            <p>Email: @contact.HospitalEmail</p>
+            <h2 class="bg-danger text-white text-center"> @contact.Name Google Map Address</h2>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item w-100"
+                    src="@contact.HospitalMapCode"
+                    allowfullscreen
+                    height="500"
+                    title="This is google aga khan Map"
+                    alt="This is google aga khan Map">
+                </iframe>
+            </div>
+        </div>
+    }
+
+</div>

@@ -1,0 +1,65 @@
+﻿@using WebApplication2.Models.ViewModels;
+@model HomeViewModel;
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div id="carouselExampleIndicators" class="carousel slide" data-mdb-ride="carousel">
+    <div class="carousel-indicators">
+        @for (int i = 0; i < Model.ImageSliders.Count; i++)
+        {
+            <button type="button"
+                data-mdb-target="#carouselExampleIndicators"
+                data-mdb-slide-to="@i"
+                class="@(i == 0 ? "active": string.Empty)"
+                aria-current="@(i == 0 ? "true": string.Empty)"
+                aria-label="Slide @Model.ImageSliders[i].Id"></button>
+        }
+       
+    </div>
+    <div class="carousel-inner">
+        @for(int j = 0; j < Model.ImageSliders.Count; j++)
+        {
+            <div class="carousel-item @(j == 0 ? "active": string.Empty)">
+                <img src="/assets/img/@Model.ImageSliders[j].Url" class="d-block w-100" alt="Image Slider @Model.ImageSliders[j].Id" />
+                </div>
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<div class="w-100 bg-danger overviewwrapper">
+    <div class="container">
+        <h1 class="text-white text-center pt-5">OVERVIEW</h1>
+
+        <h5 class="text-white pb-5">
+            Aga Khan University Hospitals in Karachi, Pakistan and Nairobi, Kenya are private,
+            not-for-profit institutions providing high quality health care. The Main Hospitals serve as the principal sites
+            for clinical training for the University's Medical Colleges and Schools of Nursing
+            and Midwifery in Pakistan and East Africa.
+        </h5>
+    </div>
+</div>
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="offset-lg-2 col-12 col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <h4 class="text-danger">Aga Khan University Hospital Pakistan</h4>
+            <ul class="mb-5 list-group">
+                @foreach (var branch in Model.branches)
+                {
+                 <li class="list-group-item">
+                   <a href="#" class="text-dark">@branch.Name</a>
+                 </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
